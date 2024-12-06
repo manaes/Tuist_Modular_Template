@@ -242,12 +242,35 @@ func checkModuleInfo() -> Bool {
 
 // MARK: - Starting point
 
-print("Enter layer name\n(Feature | Domain | Core | Shared | UserInterface)", terminator: " : ")
+print(
+"""
+Enter layer number
+
+1. Feature: 사용자의 액션을 처리하거나 데이터를 보여주는, 사용자와 직접 맞닿는 레이어
+ex) AuthFeature, ProfileFeature
+
+2. Domain: 도메인 로직이 진행되는 레이어
+ex) AuthDomain, ProfileDomain
+
+3. Core: 앱의 비즈니스를 포함하지 않고 순수 기능성 모듈이 위치한 레이어
+ex) NetworkingModule, DatabaseModule
+
+4. Shared: 로깅, extension 등 모든 레이어에서 공용으로 재사용될 모듈이 위치한 레이어
+ex) UtilityModule, LoggingModule
+
+5. UserInterface: 공용 View, 디자인 시스템, 리소스 등 UI 요소 모듈이 위치한 레이어
+ex) DesignSystem, LocalizableManager
+
+""", terminator: ": ")
 let layerInput = readLine()
+
+let layerList = ["Feature", "Domain", "Core", "Shared", "UserInterface"]
 guard
     let layerInput,
+    let layerIndex = Int(layerInput),
+    layerIndex < layerList.count, layerIndex >= 0,
     !layerInput.isEmpty,
-    let layerUnwrapping = LayerType(rawValue: layerInput)
+    let layerUnwrapping = LayerType(rawValue: layerList[layerIndex - 1])
 else {
     print("Layer is empty or invalid")
     exit(1)
