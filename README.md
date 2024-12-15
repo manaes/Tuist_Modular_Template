@@ -22,6 +22,9 @@ Features - Services - Core - UserInterface - Shared
 - Shared
   - 로깅, extension 등 모든 레이어에서 공용으로 재사용될 모듈이 위치한 레이어
   - ex) UtilityModule, LoggingModule
+- AppExtension
+  - 앱에 연결되는 AppExtension 레이어
+  - 별도의 모듈로 생성되지 않으며, 프로젝트 설정에서 추가해야함
 
 을 생각하여 레이어를 분리하였습니다.
 
