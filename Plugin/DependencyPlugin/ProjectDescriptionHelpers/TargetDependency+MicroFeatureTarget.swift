@@ -51,4 +51,14 @@ public extension TargetDependency {
             path: .relativeToUserInterface(target.rawValue)
         )
     }
+    
+    static func appExtension(
+        target: ModulePaths.AppExtension,
+        type: MicroTargetType = .sources
+    ) -> TargetDependency {
+        .project(
+            target: target.targetName(type: type),
+            path: .relativeToAppExtension(target.rawValue)
+        )
+    }
 }

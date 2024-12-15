@@ -19,6 +19,9 @@ public extension ProjectDescription.Path {
     static func relativeToUserInterface(_ path: String) -> Self {
         return .relativeToRoot("Projects/UserInterface/\(path)")
     }
+    static func relativeToAppExtension(_ path: String) -> Self {
+        return .relativeToRoot("Projects/AppExtension/\(path)")
+    }
     static var app: Self {
         return .relativeToRoot("Projects/App")
     }
@@ -39,5 +42,8 @@ public extension TargetDependency {
     }
     static func userInterface(name: String) -> Self {
         return .project(target: name, path: .relativeToUserInterface(name))
+    }
+    static func appExtension(name: String) -> Self {
+        return .project(target: name, path: .relativeToAppExtension(name))
     }
 }

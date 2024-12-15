@@ -7,6 +7,7 @@ public enum ModulePaths {
     case core(Core)
     case shared(Shared)
     case userInterface(UserInterface)
+    case appExtension(AppExtension)
 }
 
 extension ModulePaths: MicroTargetPathConvertable {
@@ -16,7 +17,8 @@ extension ModulePaths: MicroTargetPathConvertable {
             let .domain(module as any MicroTargetPathConvertable),
             let .core(module as any MicroTargetPathConvertable),
             let .shared(module as any MicroTargetPathConvertable),
-            let .userInterface(module as any MicroTargetPathConvertable):
+            let .userInterface(module as any MicroTargetPathConvertable),
+            let .appExtension(module as any MicroTargetPathConvertable):
             return module.targetName(type: type)
         }
     }

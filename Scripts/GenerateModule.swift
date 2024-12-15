@@ -13,6 +13,7 @@ enum LayerType: String {
     case core = "Core"
     case shared = "Shared"
     case userInterface = "UserInterface"
+    case appExtension = "AppExtension"
 }
 
 enum MicroTargetType: String {
@@ -261,14 +262,16 @@ ex) UtilityModule, LoggingModule
 5. UserInterface: 공용 View, 디자인 시스템, 리소스 등 UI 요소 모듈이 위치한 레이어
 ex) DesignSystem, LocalizableManager
 
+6. AppExtension: AppExtension 레이어
+
 """, terminator: ": ")
 let layerInput = readLine()
 
-let layerList = ["Feature", "Domain", "Core", "Shared", "UserInterface"]
+let layerList = ["Feature", "Domain", "Core", "Shared", "UserInterface", "AppExtension"]
 guard
     let layerInput,
     let layerIndex = Int(layerInput),
-    layerIndex < layerList.count, layerIndex >= 0,
+    layerIndex <= layerList.count, layerIndex >= 0,
     !layerInput.isEmpty,
     let layerUnwrapping = LayerType(rawValue: layerList[layerIndex - 1])
 else {

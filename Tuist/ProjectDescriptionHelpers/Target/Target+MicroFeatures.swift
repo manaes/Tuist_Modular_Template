@@ -191,3 +191,22 @@ public extension Target {
         .toTarget(with: "\(name)Demo", product: .app)
     }
 }
+
+// MARK: - AppExtension
+public extension Target {
+    static func appExtension(spec: TargetSpec) -> Target {
+        spec.with {
+            $0.settings = .settings(
+                base: spec.settings?.base ?? [:],
+                configurations: .default,
+                defaultSettings: spec.settings?.defaultSettings ?? .recommended
+            )
+            $0.infoPlist = spec.infoPlist ?? .extendingDefault(with: [
+                "UIMainStoryboardFile": "",
+                "UILaunchStoryboardName": "LaunchScreen",
+                "ENABLE_TESTS": .boolean(true),
+            ])
+        }
+        .toTarget(with: spec.name, product: .appExtension)
+    }
+}
